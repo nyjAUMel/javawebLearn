@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    
+    <welcome-file-list>
+        <!--
+            路径不用加斜杠，默认从web根开始
+            配置的页面优先级依次从上至下
+            当文件名为index.html时，不需要配置也可以访问
+                这是因为tomcat为我们配置好了
+                    配置欢迎页面有两个地方：
+                        局部配置(优先级高，就近原则)：就是在webapp内幕的web.xml文件中配置
+                        全局配置：就是CATALINA_HOME/conf/web.xml文件中配置
+         -->
+        <!-- <welcome-file>login.html</welcome-file> -->
+        <!-- <welcome-file>page1/page2/page.html</welcome-file> -->
+        <!-- 欢迎页面也可以是个servlet，不过记得要配置该servlet类。要重写doGet()方法 -->
+        <welcome-file>welcomeServlet</welcome-file>
+    </welcome-file-list>
+
+
+    <servlet>
+        <servlet-name>welcomeServlet</servlet-name>
+        <servlet-class>com.bjpowernode.javaweb.servlet.WelcomeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>welcomeServlet</servlet-name>
+        <url-pattern>/welcomeServlet</url-pattern>
+    </servlet-mapping>
+</web-app>

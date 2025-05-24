@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="oa3WithCookie:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/oa3WithCookie_Web_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="oa3WithCookie/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="oa3WithCookie" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

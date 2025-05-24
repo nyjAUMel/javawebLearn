@@ -1,0 +1,10 @@
+JSP中直接编写普通字符串
+    翻译到service方法的out.write("里")
+<%%>
+    翻译到service方法里
+<%!%>
+    翻译到service方法外
+<%=%>
+    翻译成service方法里的out.print()
+<%@page contentType="text/html;charset=UTF-8"%>
+    page指令，通过contextType属性用来设置响应的内容类型
