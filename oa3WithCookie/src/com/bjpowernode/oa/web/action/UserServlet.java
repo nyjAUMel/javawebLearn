@@ -82,8 +82,8 @@ public class UserServlet extends HttpServlet {
             // 确定选择十天免登录，创建Cookie实现十天免登录
             if ("1".equals(req.getParameter("remember"))) {
                 // 创建Cookie 存储登录名和密码
-                Cookie cookie1 = new Cookie("loginName", username);
-                Cookie cookie2 = new Cookie("loginPassword", password);
+                Cookie cookie1 = new Cookie("username", username);
+                Cookie cookie2 = new Cookie("password", password);
                 cookie1.setMaxAge(60 * 60 * 24 * 7); // 7天
                 cookie2.setMaxAge(60 * 60 * 24 * 7); // 7天
                 // 设置Cookie的Path，只要访问这个应用，就要携带Cookie

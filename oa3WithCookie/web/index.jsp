@@ -18,13 +18,7 @@
 
 <h1>Login Page</h1>
 <hr>
-<%
-    // 获取Cookie
-    Cookie[] cookies = request.getCookies();
-    if(cookies != null){
-        response.sendRedirect(request.getContextPath()+"/dept/list");
-    }
-%>
+
 <form action="<%=request.getContextPath()%>/user/login" method="post">
     username: <input type="text" name="username"><br>
     password: <input type="password" name="password"><br>
