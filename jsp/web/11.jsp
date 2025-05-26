@@ -20,9 +20,10 @@
     // 存对象
     HashMap<String, User> stringUserHashMap = new HashMap<>();
     User user = new User();
-    user.setUsername("张三");
-    user.setAge(18);
-    request.setAttribute("user", user);
+    user.setUsername("丁程鑫");
+    user.setAge(66);
+    stringUserHashMap.put("user", user);
+    request.setAttribute("stringUserHashMap", stringUserHashMap);
 %>
 
 <%-- 取出map集合中的普通字符串--%>
@@ -32,5 +33,5 @@ ${map["password"]}
 <hr>
 
 <%-- 取出map集合中的对象的属性--%>
-${user.username}
-${user["age"]}
+${stringUserHashMap.user.username}
+${stringUserHashMap.user["age"]}

@@ -19,8 +19,28 @@
 
 <hr>
 
-<%-- 获取用户提交的数据--%>
+<%--
+    获取用户提交的数据
+    http://localhost:8080/jsp/15.jsp?username=zhangsan
+--%>
 <%=request.getParameter("username")%>
 <br>
 <%--用EL表达式的方式--%>
 ${param.username}
+<%-- getParameter和param只能获取第一个数据，也就是说如果传来的是复选框那么只能获取第一个。 --%>
+<%=request.getParameter("hobby")%>
+<%=request.getParameter("hobby")%>
+${param.hobby}
+${param.hobby}
+<hr>
+
+<%--
+    getParameterValues和paramValues可以获取所有数据。
+--%>
+一维数组：<%=request.getParameterValues("hobby")%>、
+一维数组：${paramValues.hobby}
+<br>
+<%=request.getParameterValues("hobby")[0]%>、
+<%=request.getParameterValues("hobby")[1]%>
+${paramValues.hobby[0]}、
+${paramValues.hobby[1]}
