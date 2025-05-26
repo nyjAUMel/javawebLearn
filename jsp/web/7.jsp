@@ -37,6 +37,10 @@ ${userObj}
 <%-- 这个调用的还是getter()方法，只不过去了get首字母小写 --%>
 ${userObj.username}
 <br>
+<%--也可以显示调用getter方法:--%>
+${userObj.getUsername()}
+
+<br>
 ${userObj.password}
 <br>
 ${userObj.age}
