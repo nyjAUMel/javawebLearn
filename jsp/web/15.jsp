@@ -27,6 +27,7 @@
 <br>
 <%--用EL表达式的方式--%>
 ${param.username}
+<hr>
 <%-- getParameter和param只能获取第一个数据，也就是说如果传来的是复选框那么只能获取第一个。 --%>
 <%=request.getParameter("hobby")%>
 <%=request.getParameter("hobby")%>
@@ -44,3 +45,11 @@ ${param.hobby}
 <%=request.getParameterValues("hobby")[1]%>
 ${paramValues.hobby[0]}、
 ${paramValues.hobby[1]}
+
+<hr>
+
+<%--EL表达式中的隐含对象：initParam--%>
+<%--ServletContext是Servlet上下文对象，对应的JSP九大内置对象之一是：application--%>
+获取web.xml配置的上下文初始化参数：<%=application.getInitParameter("pageSize")%>
+<br>
+获取web.xml配置的上下文初始化参数：${initParam.pageSize}

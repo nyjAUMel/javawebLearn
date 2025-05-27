@@ -2,7 +2,7 @@
 
 <%--
 JSP九大内置对象有个 pageContext和request
-而pageContext有个getRequest()方法，可以获取request对象。这两个对象是一样的(内存地址行相同)
+而pageContext有个getRequest()方法，可以获取request对象。这两个对象是一样的(内存地址相同)
 --%>
 <%=pageContext.getRequest()%>
 <br>
