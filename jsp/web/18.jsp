@@ -16,8 +16,10 @@
       true: 条件为true时，标签中的内容会输出
       false: 条件为false时，标签中的内容不会输出
   var: 保存判断的结果
-  scope: 保存结果的作用域:  page, request, session, application
+  scope: 保存结果var的作用域:  page, request, session, application
 --%>
-<c:if test="${!empty param.username}">
+<c:if test="${!empty param.username}" var="v" scope="page">
     <h1>欢迎${param.username}</h1>
 </c:if>
+<%--将page域中的v取出--%>
+${v}
