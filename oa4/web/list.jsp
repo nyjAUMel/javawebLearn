@@ -24,11 +24,22 @@
     作用：
         为页面上所有相对路径提供基准URL(也就是不以斜杠开头的路径)
 --%>
-<%--<base href="${pageContext.request.contextPath}">--%>
+<%--
+    pageContext.request.scheme:当前请求的协议
+    pageContext.request.serverName:当前服务器的名称
+    pageContext.request.serverPort:当前服务器的端口号
+    pageContext.request.contextPath:当前项目的访问路径
+--%>
+<%--${pageContext.request.scheme} 输出 http --%>
+<%--${pageContext.request.serverName} 输出 localhost --%>
+<%--${pageContext.request.serverPort} 输出 8080 --%>
+<%--${pageContext.request.contextPath} 输出 /oa4--%>
+
+<base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
 <body>
 <p>欢迎:${sessionScope.username}</p>
-<p><a href="${pageContext.request.contextPath}/user/logout">退出</a></p>
-<%--<p><a href="user/logout">退出</a></p>--%>
+<%--<p><a href="${pageContext.request.contextPath}/user/logout">退出</a></p>--%>
+<p><a href="user/logout">退出</a></p>
 <h1 style="text-align: center;">部门列表</h1>
 <hr/>
 <table border="1" align="center" width="50%">
@@ -56,7 +67,10 @@
     </tbody>
 </table>
 <hr/>
-<a href="${pageContext.request.contextPath}/add.jsp">新增部门</a>
+<%--因为上面使用了base标签--%>
+<%--<a href="${pageContext.request.contextPath}/add.jsp">新增部门</a>--%>
+<%--所以可以改成--%>
+<a href="add.jsp">新增部门</a>
 <script>
     const deptNos = document.querySelectorAll("tr td:nth-child(2)")
     const tds = document.querySelectorAll("tr td:nth-child(4)")
