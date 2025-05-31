@@ -28,7 +28,8 @@ import java.io.IOException;
     /css/style.css        ×           √
     /js/main.js           ×           √
  */
-@WebFilter("*.do") // 补充：*.do路径属于模糊匹配中的扩展匹配，以 * 开始，不能带斜杠
+//@WebFilter("*.do") // 补充：*.do路径属于模糊匹配中的扩展匹配(后缀匹配)，以 * 开始，不能带斜杠
+// 使用 @WebFilter 注解定义的过滤器，其执行顺序由容器决定（通常按类名首字母排序），不推荐依赖此顺序。
 public class Filter1 implements Filter {
 
     public Filter1() {

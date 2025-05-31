@@ -1,0 +1,10 @@
+Filter过滤器的优先级天生就比Servlet高
+例如：a.do对应一个Filter也对应一个Servlet，那么Filter先执行，Servlet后执行。
+
+多个过滤器（Filter）的执行优先级遵循以下规则：
+    在 web.xml 中，过滤器的执行顺序与其在配置文件中的声明顺序一致(其实只要filter-mapping越靠上优先级越高)。
+    使用 @WebFilter 注解定义的过滤器，其执行顺序由容器决定（通常按类名首字母排序），不推荐依赖此顺序。
+注意：避免混合使用 @WebFilter 和 web.xml 配置（除非明确不需要顺序控制）。
+
+Filter生命周期：
+    与Servlet一样，唯一的区别是Filter默认情况下，服务器启动时就会实例化

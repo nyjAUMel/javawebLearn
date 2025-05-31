@@ -5,12 +5,29 @@
          version="4.0">
 
     <!--配置过滤器，也可以用@WebFilter注解-->
-    <!--<filter>
+    <filter>
         <filter-name>filter1</filter-name>
         <filter-class>com.bjpowernode.javaweb.servlet.Filter1</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>filter1</filter-name>
-        <url-pattern>/abc</url-pattern>
-    </filter-mapping>-->
+<!--        <url-pattern>a.do</url-pattern>-->
+<!--        <url-pattern>*.do</url-pattern>-->
+
+        <!--这么写可能会导致：明明请求了一次但执行了两次doFilter方法-->
+<!--        <url-pattern>/*</url-pattern>-->
+
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+
+
+    <filter>
+        <filter-name>filter2</filter-name>
+        <filter-class>com.bjpowernode.javaweb.servlet.Filter2</filter-class>
+    </filter>
+    <!-- 多个过滤器存在时，filter-mapping标签越靠上优先级越高-->
+    <filter-mapping>
+        <filter-name>filter2</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
 </web-app>
