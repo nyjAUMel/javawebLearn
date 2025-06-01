@@ -36,7 +36,7 @@
 
 <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
 <body>
-<p>欢迎:${sessionScope.username}</p>
+<p>欢迎第${applicationScope.onlineCount}位用户:${sessionScope.username}</p>
 <%--<p><a href="${pageContext.request.contextPath}/user/logout">退出</a></p>--%>
 <p><a href="user/logout">退出</a></p>
 <h1 style="text-align: center;">部门列表</h1>

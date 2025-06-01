@@ -3,6 +3,7 @@ package oa.web.action;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
+import oa.bean.User;
 import oa.utils.DBUtil;
 
 import java.io.IOException;
@@ -57,6 +58,8 @@ public class WelcomeServlet extends HttpServlet {
             // 登陆成功
             if (success) {
                 HttpSession session = req.getSession();
+                User user = new User(username, password);
+                session.setAttribute("user", user);
                 session.setAttribute("username", username);
                 session.setAttribute("password", password);
                 // 重定向到部门列表

@@ -4,6 +4,7 @@ package oa.web.action;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
+import oa.bean.User;
 import oa.utils.DBUtil;
 
 import java.io.IOException;
@@ -23,6 +24,8 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        // 获取请求路径
         String servletPath = req.getServletPath();
         switch (servletPath) {
             case "/user/login":
@@ -47,7 +50,9 @@ public class UserServlet extends HttpServlet {
         HttpSession session = req.getSession(false);
 
         if (session != null) {
-            // 手动删除
+            // 从session域中删除user对象
+            session.removeAttribute("user");
+            //  销毁session
             session.invalidate();
             // 删除Cookie
             Cookie[] cookies = req.getCookies();
@@ -120,6 +125,7 @@ public class UserServlet extends HttpServlet {
         }
         // 判断是否登录成功拼接不同的页面
         if (success) {
+
             // 确定选择十天免登录，创建Cookie实现十天免登录
             if ("1".equals(req.getParameter("remember"))) {
                 // 创建Cookie 存储登录名和密码
@@ -135,6 +141,17 @@ public class UserServlet extends HttpServlet {
                 resp.addCookie(cookie2);
             }
             HttpSession session = req.getSession();
+            User user = new User(username, password);
+            /*
+            * 不同浏览器 = 不同的Session
+                张三用Chrome登录 → 得到Session1（JSESSIONID=abc123）
+                李四用Firefox登录 → 得到Session2（JSESSIONID=xyz789）
+
+              所以即使都叫user也不会覆盖
+            *
+            * */
+            session.setAttribute("user", user);
+
             session.setAttribute("username", username);
             session.setAttribute("password", password);
         }

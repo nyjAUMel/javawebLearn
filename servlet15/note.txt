@@ -1,0 +1,62 @@
+一、监听器分类
+    Java Web 监听器分为两类：
+        生命周期监听器：监听对象的创建与销毁（如 ServletContext, HttpSession, ServletRequest）。
+        属性变更监听器：监听作用域中属性的增删改（如 ServletContextAttributeListener, HttpSessionAttributeListener）。
+二、核心监听器详解
+    1. ServletContextListener
+        作用：监听 ServletContext（应用上下文）的创建与销毁。
+            触发时机：
+                创建：Web 应用启动时。
+                销毁：Web 应用关闭时。
+            典型用途：
+                应用初始化（如加载配置文件、初始化数据库连接池）。
+                应用关闭时释放资源。
+    2. HttpSessionListener
+        作用：监听 HttpSession（用户会话）的创建与销毁。
+            触发时机：
+                创建：用户首次访问时（调用 request.getSession()）。
+                销毁：会话超时或调用 session.invalidate()。
+            典型用途：
+                统计在线用户数。
+                记录用户登录/登出日志。
+    3. ServletRequestListener
+        作用：监听 ServletRequest（请求对象）的创建与销毁。
+            触发时机：
+                创建：客户端发送请求时。
+                销毁：服务器完成响应时。
+            典型用途：
+                请求日志记录。
+                请求计数器。
+    4. HttpSessionAttributeListener
+        作用：监听 HttpSession 中属性的增删改。
+            触发时机：
+                添加属性：调用 session.setAttribute()。
+                移除属性：调用 session.removeAttribute()。
+                替换属性：调用 session.setAttribute() 覆盖已有属性。
+            典型用途：
+                用户登录状态变更通知。
+                缓存更新监控。
+    5. ServletContextAttributeListener
+        作用：监听 ServletContext 中属性的增删改。
+            触发时机：
+            添加属性：调用 application.setAttribute()。
+            移除属性：调用 application.removeAttribute()。
+            替换属性：调用 application.setAttribute() 覆盖已有属性。
+        典型用途：
+            全局缓存更新通知。
+            配置参数变更监控。
+    6. HttpSessionBindingListener
+        作用：监听某个对象是否被绑定（添加）或解除（移除）到 HttpSession。
+            触发时机：
+                绑定：对象被添加到会话时。
+                解除：对象从会话中移除时。
+            特点：
+                无需注册：直接绑定到具体类（如用户对象）。
+            典型用途：
+                用户登录/登出时触发逻辑。
+                对象生命周期管理。
+        注：HttpSessionBindingListener与HttpSessionAttributeListener不同，前者只有实现了该接口的类被添加到session中时才会被监听。后者则是需要声明注解@WebListener并实现该接口才能监听有添加到session域中的属性，包括普通属性，对象属性，数组属性等。
+
+HttpSessionListener用来监听Session的创建和销毁
+HttpSessionAttributeListener用来监听Session域中属性的增加和删除
+HttpSessionBindingListener用来监听往Session域中存储了特定数据
