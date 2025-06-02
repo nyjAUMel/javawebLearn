@@ -1,0 +1,7 @@
+要开启事务层得在service层开，因为一个业务方法可能调用多个DAO层的方法。所以在service层开启更合适。
+要开启事务就要用Connection对象，那也就是说元哦在service层获取Connection对象，然后传递给DAO层。
+这就造成两个问题：
+    1.在service层获取Connection对象，我们已经把操作数据库的代码写到了dao层里，现在又要在service层里写。所以会导致service层就依赖了数据源，耦合性太高。
+    2.service层创建的Connection对象和DAO层创建的Connection对象不是同一个对象，所以无效。
+为了解决问题2，我们可以在service调用每个DAO层的方法时把Connection对象传过去，传到DAO层。(这样要注意一个问题，就是不能在DAO层把Connection对象关掉，因为service层还要用)。不过这样虽然解决了Connection对象不是同一个的问题，但这样也造成了代码丑陋。
+为了解决上述造成代码丑陋的问题，我们可以使用Thread.currentThread()方法，该方法用来获取当前线程(tomcat是支持多线程并发的，同一次访问service和dao都调用这个方法获取的线程肯定是同一个。不同的人发送来的请求获得的线程肯定不一样)。将Connection对象绑定到当前线程上，这样就可以保证Connection对象是同一个了。
